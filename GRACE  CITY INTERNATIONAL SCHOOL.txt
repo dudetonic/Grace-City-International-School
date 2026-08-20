@@ -1,0 +1,127 @@
+GRACE  CITY INTERNATIONAL SCHOOL 
+# ==============================================================================
+# GRACE CITY INTERNATIONAL SCHOOL PORTAL - COMPLETE REQUIREMENTS SPECIFICATION
+# Levels: Creche, Nursery, Primary, Secondary, Tertiary
+# Modules: Institutional System, JAMB CBT, Public Website & Communications
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. CORE ARCHITECTURE & SECURITY (Inspection-Ready)
+# ------------------------------------------------------------------------------
+- Multi-Tenant Architecture: Single codebase supporting 5 distinct levels with isolated data views.
+- Role-Based Access Control (RBAC): Granular permissions (Super Admin, Section Head, Teacher, Student, Parent, Auditor, Public Visitor).
+- Audit Logging System: Immutable logs for ALL academic, financial, and administrative actions.
+- Data Encryption: AES-256 for data at rest; TLS 1.3 for data in transit.
+- Compliance Module: Automated generation of inspection-ready documentation (Quality Assurance reports).
+- Backup & Disaster Recovery: Automated daily incremental backups with 30-day retention.
+- SSL Certificate Management: Auto-renewal and enforcement for secure public and private access.
+
+# ------------------------------------------------------------------------------
+# 2. PUBLIC WEBSITE & COMMUNICATIONS (New Module)
+# ------------------------------------------------------------------------------
+- Dynamic Homepage Hero Slider:
+  - Support for 3-5 rotating high-impact images/videos.
+  - Configurable headlines, sub-text, and call-to-action buttons (e.g., "Apply Now", "View Results").
+  - Mobile-responsive touch gestures for navigation.
+- News & Announcements Hub:
+  - Categorized news feeds (General, Academics, Sports, Alumni, CBT Updates).
+  - Rich text editor for articles with embedded media (images, videos).
+  - "Featured Story" highlighting capability for top headlines.
+  - Archive system with search and filter by date/category.
+- Interactive Event Calendar:
+  - Color-coded events by section (Creche, Primary, Secondary, Tertiary).
+  - Sync capability with Google Calendar/Outlook for parents.
+  - Detailed event pages with RSVP forms and location maps.
+- Media Gallery & Showcase:
+  - Organized albums for events, excursions, sports days, and graduations.
+  - Support for high-resolution images and embedded YouTube/Vimeo videos.
+  - Alt-text support for accessibility compliance.
+- Admissions & Lead Generation:
+  - Online inquiry forms with auto-response emails.
+  - Downloadable prospectus/brochure repository (PDF).
+  - Virtual Tour integration (360-degree photos or video walkthroughs).
+- Multilingual Support:
+  - Toggle for primary languages (e.g., English, French, Local Dialects).
+  - Auto-translation integration for public pages.
+- Social Media Integration:
+  - Live feeds from Facebook, Instagram, X (Twitter) on the homepage.
+  - Social sharing buttons on all news articles and event pages.
+- Staff Directory (Public View):
+  - Searchable list of key administrative and teaching staff with contact info.
+- Contact & Location Module:
+  - Interactive Google Maps integration with parking/drop-off info.
+  - Department-specific contact forms (Admissions, Bursary, Principal's Office).
+- Accessibility Features (WCAG 2.1 AA):
+  - Screen reader compatibility, keyboard navigation, and high-contrast mode toggle.
+
+# ------------------------------------------------------------------------------
+# 3. ADVANCED ACADEMIC MANAGEMENT (Internal Portal)
+# ------------------------------------------------------------------------------
+- Unified Student Profile: Longitudinal records from Creche through Tertiary graduation.
+- Enhanced Result Management:
+  - Multi-semester support.
+  - Transcript generation (WAEC/IGCSE formats for Secondary; Credit Units for Tertiary).
+  - Central Academic Records Archive (Digital vault for past students).
+- Academic Performance Analytics:
+  - Real-time dashboards for pass/fail ratios, subject trends, and teacher performance.
+  - Early warning system for at-risk students.
+- Examination Workflow Controls:
+  - Secure question paper upload and approval chains.
+  - Automated grading scripts for objective tests.
+  - Grading scale customization per section.
+
+# ------------------------------------------------------------------------------
+# 4. JAMB CBT READINESS & EXAM CENTER MODULE
+# ------------------------------------------------------------------------------
+- CBT Architecture Alignment:
+  - Database schema optimized for high-frequency read/write operations.
+  - Low-latency query structure for instant question rendering.
+- School Exam Center Features:
+  - Integrated CBT Browser: Secure lockdown browser capability.
+  - Question Bank Manager: Support for JAMB-standard formats (timed sessions, instant scoring).
+  - Mock Exam Engine: Simulates real JAMB UTME environment.
+- Infrastructure Planning:
+  - High Availability (HA) configuration support (Load Balancing ready).
+  - Offline-First Capability: Local caching for exams during internet fluctuations.
+- Security Protocols:
+  - IP Address restriction for exam sessions.
+  - Anti-cheat logging (tab switching detection, copy-paste disable).
+
+# ------------------------------------------------------------------------------
+# 5. ADMINISTRATION, HR & FINANCE
+# ------------------------------------------------------------------------------
+- Quality Assurance (QA) Module: Digital checklists for classroom inspections.
+- Staff Management: Recruitment, onboarding, payroll, and performance appraisal.
+- Inventory & Asset Management: Tracking of CBT hardware and school assets.
+- Flexible Fee Structures: Support for one-off payments and installment plans.
+- Online Payment Gateway: Integration with Paystack, Flutterwave, or Remita.
+- Automated Invoicing & Receipting: PDF generation with QR codes.
+- Financial Reporting: Real-time revenue dashboards and audit trails.
+
+# ------------------------------------------------------------------------------
+# 6. COMMUNICATION & STAKEHOLDER ENGAGEMENT (Internal)
+# ------------------------------------------------------------------------------
+- Parent/Student Portals: Mobile-responsive views for grades, fees, and homework.
+- Notification Engine: Bulk SMS, Email, and Push Notifications for emergencies.
+- Internal Messaging: Secure chat between staff and administration.
+- Digital Notice Board: Section-specific announcements.
+
+# ------------------------------------------------------------------------------
+# 7. TRAINING & DEPLOYMENT
+# ------------------------------------------------------------------------------
+- Onboarding Suite: Interactive video tutorials and digital user manuals.
+- Deployment Support: Staging environment, data migration tools, and 30-day stabilization.
+- CBT Center Training: Specific modules for staff managing JAMB CBT operations.
+- Content Management Training: Training for admin staff on updating News, Events, and Galleries.
+
+# ------------------------------------------------------------------------------
+# 8. TECHNICAL STACK RECOMMENDATIONS
+# ------------------------------------------------------------------------------
+- Backend: PHP 8.3+ (Laravel Framework) OR Python (Django)
+- Database: MySQL 8.0+ or PostgreSQL 15+ (Optimized for CBT and Content heavy loads)
+- Frontend: React.js or Vue.js (for reactive CBT and dynamic news sliders)
+- CMS Integration: Headless CMS or custom module for easy news/event updates by non-tech staff.
+- Server: Linux (Ubuntu 24.04 LTS) with Nginx/Apache
+- Caching: Redis (Essential for CBT speed and homepage slider performance)
+- Mobile: Flutter (Single codebase for iOS/Android Parent & Student Apps)
+- CDN: Cloudflare or AWS CloudFront for fast delivery of media gallery images globally.   

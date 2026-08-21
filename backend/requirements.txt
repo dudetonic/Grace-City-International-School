@@ -1,0 +1,34 @@
+# === Core ===
+Django>=5.0,<5.2
+djangorestframework>=3.15          # REST API (you're already using serializers/routers)
+
+# === Database ===
+mysqlclient>=2.2                   # MySQL connector for Django
+# If mysqlclient fails to build on Windows (needs C++ build tools), use instead:
+# PyMySQL>=1.1
+
+# === Environment / Config ===
+django-environ>=0.11               # reads your .env.example file into settings.py
+
+# === Auth & RBAC ===
+djangorestframework-simplejwt>=5.3 # JWT auth for Admin/Staff/Student/Parent roles
+django-cors-headers>=4.3           # required once your React/Vue frontend calls the API
+
+# === Filtering & Search (News, Events, Results) ===
+django-filter>=24.2                # category/date filtering for News, Events
+
+# === Media & Files (Gallery, Prospectus PDFs, Receipts) ===
+Pillow>=10.0                       # image handling for gallery, staff photos, news images
+
+# === Notifications (Bulk SMS / Email) ===
+celery>=5.4                        # background task queue for bulk notifications
+redis>=5.0                         # matches the doc's Redis recommendation (cache + celery broker)
+django-redis>=5.4                  # Redis cache backend for Django
+
+# === PDF Generation (Invoices, Transcripts, Receipts with QR) ===
+reportlab>=4.2                     # or WeasyPrint, for PDF invoices/transcripts
+qrcode>=7.4                        # QR codes on receipts
+
+# === Dev tools (optional but recommended) ===
+django-extensions>=3.2
+python-dotenv>=1.0

@@ -1,70 +1,135 @@
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown, Phone, MapPin } from 'lucide-react';
-import { useState } from 'react';
+import { Menu, X, ChevronDown, Phone, MapPin, Mail, LogIn, GraduationCap } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleMobileDropdown = (name: string) => {
+    setOpenMobileDropdown(prev => prev === name ? null : name);
+  };
+
+  const closeMobile = () => {
+    setIsOpen(false);
+    setOpenMobileDropdown(null);
+  };
 
   return (
-    <header className="navbar-wrapper">
-      <div className="top-bar">
-        <div className="container top-bar-content">
-          <div className="top-bar-contact">
-            <span><Phone size={14} /> +234 123 456 7890</span>
-            <span><MapPin size={14} /> 123 Grace Avenue, GCIS Campus</span>
+    <>
+      {/* Top Utility Bar */}
+      <div className="utility-bar">
+        <div className="container utility-bar-inner">
+          <div className="utility-bar-left">
+            <span><MapPin size={12} /> 123 Grace Avenue, GCIS Campus</span>
+            <span><Phone size={12} /> +234 123 456 7890</span>
+            <span><Mail size={12} /> info@gracecityintl.edu.ng</span>
           </div>
-          <div className="top-bar-links">
-            <Link to="/portal" className="portal-link">Staff/Student Portal</Link>
+          <div className="utility-bar-right">
+            <Link to="/portal" onClick={closeMobile}><LogIn size={12} /> Parent Portal</Link>
+            <Link to="/portal" onClick={closeMobile}><GraduationCap size={12} /> Student Login</Link>
           </div>
         </div>
       </div>
-      
-      <nav className="main-nav">
-        <div className="container nav-content">
-          <Link to="/" className="brand">
-            <div className="logo-placeholder"></div>
-            <div className="brand-text">
-              <span className="school-name">Grace City</span>
-              <span className="school-type">International School</span>
+
+      {/* Main Header */}
+      <header className={`main-header ${scrolled ? 'scrolled' : ''}`} role="banner">
+        <div className="container header-inner">
+          <Link to="/" className="header-brand" aria-label="Grace City International School - Home">
+            <div className="header-logo" aria-hidden="true">GC</div>
+            <div className="header-brand-text">
+              <span className="header-brand-name">Grace City</span>
+              <span className="header-brand-tagline">International School</span>
             </div>
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="desktop-menu">
+          {/* Desktop Nav */}
+          <nav className="desktop-nav" role="navigation" aria-label="Main navigation">
             <Link to="/" className="nav-link">Home</Link>
-            <div className="nav-item-dropdown">
-              <span className="nav-link">Academics <ChevronDown size={16} /></span>
-              <div className="dropdown-content glass">
-                <Link to="/academics/creche">Creche & Nursery</Link>
+            <Link to="/about" className="nav-link">About Us</Link>
+            
+            <div className="nav-dropdown">
+              <span className="nav-link" tabIndex={0} style={{cursor: 'pointer'}}>
+                Academics <ChevronDown size={14} />
+              </span>
+              <div className="nav-dropdown-menu">
+                <Link to="/academics/creche">Creche &amp; Nursery</Link>
                 <Link to="/academics/primary">Primary School</Link>
                 <Link to="/academics/secondary">Secondary School</Link>
-                <Link to="/academics/tertiary">Tertiary/A-Levels</Link>
+                <Link to="/academics/tertiary">Tertiary / A-Levels</Link>
               </div>
             </div>
-            <Link to="/admissions" className="nav-link">Admissions</Link>
-            <Link to="/news" className="nav-link">News</Link>
-            <Link to="/events" className="nav-link">Events</Link>
-            <Link to="/admissions" className="btn btn-primary ml-4">Apply Now</Link>
-          </div>
+
+            <div className="nav-dropdown">
+              <span className="nav-link" tabIndex={0} style={{cursor: 'pointer'}}>
+                Campus Life <ChevronDown size={14} />
+              </span>
+              <div className="nav-dropdown-menu">
+                <Link to="/attendance">Attendance</Link>
+                <Link to="/newsletters">Newsletters</Link>
+                <Link to="/term-dates">Term Dates</Link>
+                <Link to="/school-meals">School Meals</Link>
+                <Link to="/uniform">Uniform</Link>
+              </div>
+            </div>
+
+            <Link to="/news" className="nav-link">News &amp; Events</Link>
+            <Link to="/contact" className="nav-link">Contact</Link>
+            
+            <Link to="/admissions" className="btn btn-accent header-apply-btn">APPLY NOW</Link>
+          </nav>
 
           {/* Mobile Menu Button */}
-          <button className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          <button className="mobile-toggle" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle navigation menu" aria-expanded={isOpen}>
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="mobile-menu animate-fade-in">
-            <Link to="/" className="mobile-link" onClick={() => setIsOpen(false)}>Home</Link>
-            <Link to="/admissions" className="mobile-link" onClick={() => setIsOpen(false)}>Admissions</Link>
-            <Link to="/news" className="mobile-link" onClick={() => setIsOpen(false)}>News</Link>
-            <Link to="/events" className="mobile-link" onClick={() => setIsOpen(false)}>Events</Link>
-            <Link to="/portal" className="mobile-link portal-link-mobile" onClick={() => setIsOpen(false)}>Login to Portal</Link>
-          </div>
+          <nav className="mobile-nav open" role="menu">
+            <Link to="/" className="mobile-nav-link" onClick={closeMobile}>Home</Link>
+            <Link to="/about" className="mobile-nav-link" onClick={closeMobile}>About Us</Link>
+            
+            <button className="mobile-dropdown-btn" onClick={() => toggleMobileDropdown('academics')} aria-expanded={openMobileDropdown === 'academics'}>
+              Academics <ChevronDown size={16} className={`chevron-rotate ${openMobileDropdown === 'academics' ? 'open' : ''}`} />
+            </button>
+            {openMobileDropdown === 'academics' && (
+              <div className="mobile-sub-items">
+                <Link to="/academics/creche" onClick={closeMobile}>Creche &amp; Nursery</Link>
+                <Link to="/academics/primary" onClick={closeMobile}>Primary School</Link>
+                <Link to="/academics/secondary" onClick={closeMobile}>Secondary School</Link>
+                <Link to="/academics/tertiary" onClick={closeMobile}>Tertiary / A-Levels</Link>
+              </div>
+            )}
+
+            <button className="mobile-dropdown-btn" onClick={() => toggleMobileDropdown('campus')} aria-expanded={openMobileDropdown === 'campus'}>
+              Campus Life <ChevronDown size={16} className={`chevron-rotate ${openMobileDropdown === 'campus' ? 'open' : ''}`} />
+            </button>
+            {openMobileDropdown === 'campus' && (
+              <div className="mobile-sub-items">
+                <Link to="/attendance" onClick={closeMobile}>Attendance</Link>
+                <Link to="/newsletters" onClick={closeMobile}>Newsletters</Link>
+                <Link to="/term-dates" onClick={closeMobile}>Term Dates</Link>
+                <Link to="/school-meals" onClick={closeMobile}>School Meals</Link>
+                <Link to="/uniform" onClick={closeMobile}>Uniform</Link>
+              </div>
+            )}
+
+            <Link to="/news" className="mobile-nav-link" onClick={closeMobile}>News &amp; Events</Link>
+            <Link to="/contact" className="mobile-nav-link" onClick={closeMobile}>Contact</Link>
+            <Link to="/admissions" className="btn btn-accent" onClick={closeMobile} style={{ marginTop: '16px', width: '100%' }}>APPLY NOW</Link>
+          </nav>
         )}
-      </nav>
-    </header>
+      </header>
+    </>
   );
 };
 

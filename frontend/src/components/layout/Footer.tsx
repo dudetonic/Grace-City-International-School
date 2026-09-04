@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { MapPin, Mail, Phone, Send } from 'lucide-react';
 import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube, FaWhatsapp } from 'react-icons/fa6';
 import { useState } from 'react';
+import { CONTACT_INFO } from '../../config/constants';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -65,15 +66,15 @@ const Footer = () => {
               <ul className="footer-contact">
                 <li>
                   <MapPin size={16} className="footer-contact-icon" aria-hidden="true" />
-                  <span>123 Grace Avenue,<br />Education City</span>
+                  <span>{CONTACT_INFO.addressFull}</span>
                 </li>
                 <li>
                   <Phone size={16} className="footer-contact-icon" aria-hidden="true" />
-                  <span>+234 123 456 7890</span>
+                  <span>{CONTACT_INFO.phone}</span>
                 </li>
                 <li>
                   <Mail size={16} className="footer-contact-icon" aria-hidden="true" />
-                  <span>info@gracecityintl.edu.ng</span>
+                  <span>{CONTACT_INFO.email}</span>
                 </li>
               </ul>
             </div>
@@ -109,7 +110,7 @@ const Footer = () => {
 
       {/* Floating Chat Bubble */}
       <a
-        href="https://wa.me/2341234567890"
+        href={`https://wa.me/${CONTACT_INFO.whatsappNumber}`}
         target="_blank"
         rel="noopener noreferrer"
         className="floating-chat"

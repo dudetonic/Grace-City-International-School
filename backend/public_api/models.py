@@ -48,6 +48,10 @@ class News(models.Model):
     class Meta:
         db_table = 'news'
         managed = False
+        verbose_name = 'News'
+    verbose_name_plural = 'News'
+    
+
 
 class Event(models.Model):
     event_id = models.AutoField(primary_key=True)
@@ -62,6 +66,7 @@ class Event(models.Model):
     class Meta:
         db_table = 'events'
         managed = False
+
 
 class AdmissionInquiry(models.Model):
     STATUS_CHOICES = [
@@ -82,3 +87,22 @@ class AdmissionInquiry(models.Model):
     class Meta:
         db_table = 'admission_inquiries'
         managed = False
+
+class ContactMessage(models.Model):
+    STATUS_CHOICES = [
+        ('new', 'New'),
+        ('read', 'Read'),
+        ('replied', 'Replied'),
+    ]
+    message_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=150)
+    email = models.CharField(max_length=150)
+    subject = models.CharField(max_length=200, null=True, blank=True)
+    message = models.TextField()
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'contact_messages'
+        # No managed=False here — unlike your other models, this table
+        # doesn't exist in schema.sql yet, so we let Django create it.

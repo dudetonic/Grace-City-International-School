@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown, Phone, MapPin, Mail, LogIn, GraduationCap } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { CONTACT_INFO } from '../../config/constants';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,9 +29,9 @@ const Navbar = () => {
       <div className="utility-bar">
         <div className="container utility-bar-inner">
           <div className="utility-bar-left">
-            <span><MapPin size={12} /> 123 Grace Avenue, GCIS Campus</span>
-            <span><Phone size={12} /> +234 123 456 7890</span>
-            <span><Mail size={12} /> info@gracecityintl.edu.ng</span>
+            <span><MapPin size={12} /> {CONTACT_INFO.address}</span>
+            <span><Phone size={12} /> {CONTACT_INFO.phone}</span>
+            <span><Mail size={12} /> {CONTACT_INFO.email}</span>
           </div>
           <div className="utility-bar-right">
             <Link to="/portal" onClick={closeMobile}><LogIn size={12} /> Parent Portal</Link>

@@ -1,8 +1,7 @@
-# pyrefly: ignore [missing-import]
 from rest_framework import viewsets
 from rest_framework.response import Response
-from .models import News, Event, AdmissionInquiry
-from .serializers import NewsSerializer, EventSerializer, AdmissionInquirySerializer
+from .models import News, Event, AdmissionInquiry, ContactMessage
+from .serializers import NewsSerializer, EventSerializer, AdmissionInquirySerializer, ContactMessageSerializer
 
 class NewsViewSet(viewsets.ReadOnlyModelViewSet):
     """
@@ -30,3 +29,10 @@ class AdmissionInquiryViewSet(viewsets.ModelViewSet):
     # Optional: override create to handle specific logic
     def create(self, request, *args, **kwargs):
         return super().create(request, *args, **kwargs)
+
+class ContactMessageViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint to submit contact form messages.
+    """
+    queryset = ContactMessage.objects.all()
+    serializer_class = ContactMessageSerializer

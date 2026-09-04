@@ -18,7 +18,7 @@ const NewsPage = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/public/news/')
+    fetch('/api/public/news/')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch news');
         return res.json();
@@ -30,7 +30,7 @@ const NewsPage = () => {
       .catch(err => {
         setError(err.message);
         setLoading(false);
-        
+
         // Mock data fallback for demonstration if backend is not running
         setNews([
           {
@@ -68,7 +68,7 @@ const NewsPage = () => {
       <div className="page-content container">
         {loading && <div className="text-center p-8">Loading news...</div>}
         {error && !news.length && <div className="text-center text-error p-8">Error: {error}</div>}
-        
+
         <div className="news-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
           {news.map(item => (
             <div key={item.news_id} className="card news-card">

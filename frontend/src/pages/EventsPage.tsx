@@ -17,7 +17,7 @@ const EventsPage = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/public/events/')
+    fetch('/api/public/news/')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch events');
         return res.json();
@@ -29,7 +29,7 @@ const EventsPage = () => {
       .catch(err => {
         setError(err.message);
         setLoading(false);
-        
+
         // Mock fallback
         setEvents([
           {
@@ -55,7 +55,7 @@ const EventsPage = () => {
       </div>
       <div className="page-content container">
         {loading && <div className="text-center p-8">Loading events...</div>}
-        
+
         <div className="events-list" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '800px', margin: '0 auto' }}>
           {events.map(event => {
             const startDate = new Date(event.start_datetime);
@@ -69,7 +69,7 @@ const EventsPage = () => {
                   <h3 style={{ marginBottom: '0.5rem', fontSize: '1.25rem' }}>{event.title}</h3>
                   <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '1rem', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                      <Clock size={16} /> {startDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                      <Clock size={16} /> {startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </span>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                       <MapPin size={16} /> {event.location || 'TBA'}

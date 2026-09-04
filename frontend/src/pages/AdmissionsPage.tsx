@@ -16,14 +16,14 @@ const AdmissionsPage = () => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const response = await fetch('http://localhost:8000/api/public/admissions/', {
+      const response = await fetch('/api/public/news/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-      
+
       if (!response.ok) throw new Error('Submission failed');
-      
+
       setStatusMsg('Application submitted successfully! We will contact you soon.');
       setFormData({ full_name: '', email: '', phone: '', level: 'primary', message: '' });
     } catch (err) {
@@ -42,10 +42,10 @@ const AdmissionsPage = () => {
           <p>Join the Grace City International School Family</p>
         </div>
       </div>
-      
+
       <div className="page-content container">
         <div className="admissions-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-          
+
           <div className="admissions-info">
             <h2>Admission Process</h2>
             <ul className="process-list" style={{ listStyle: 'none', padding: 0, marginTop: '1rem' }}>
@@ -76,54 +76,54 @@ const AdmissionsPage = () => {
           <div className="card form-card" style={{ padding: '2rem' }}>
             <h2>Online Inquiry Form</h2>
             {statusMsg && <div style={{ padding: '1rem', background: 'var(--background-color)', color: 'var(--success)', borderRadius: 'var(--radius-md)', marginTop: '1rem' }}>{statusMsg}</div>}
-            
+
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem' }}>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Parent/Guardian Name</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   required
-                  className="form-input" 
+                  className="form-input"
                   style={{ width: '100%', padding: '0.75rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
                   value={formData.full_name}
-                  onChange={(e) => setFormData({...formData, full_name: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
                 />
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Email Address</label>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     required
-                    className="form-input" 
+                    className="form-input"
                     style={{ width: '100%', padding: '0.75rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
                 </div>
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Phone Number</label>
-                  <input 
-                    type="tel" 
+                  <input
+                    type="tel"
                     required
-                    className="form-input" 
+                    className="form-input"
                     style={{ width: '100%', padding: '0.75rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
                     value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />
                 </div>
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Additional Message</label>
-                <textarea 
-                  className="form-input" 
+                <textarea
+                  className="form-input"
                   rows={3}
                   style={{ width: '100%', padding: '0.75rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
                   value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 ></textarea>
               </div>
-              
+
               <button type="submit" disabled={submitting} className="btn btn-primary" style={{ marginTop: '1rem', opacity: submitting ? 0.7 : 1 }}>
                 {submitting ? 'Submitting...' : <><Send size={18} /> Submit Inquiry</>}
               </button>

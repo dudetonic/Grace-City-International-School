@@ -1,5 +1,4 @@
 import React from 'react';
-import './AcademicLevelPage.css'; // Optional if we want specific styles, but we'll use inline or index.css grid
 
 interface TypicalDayItem {
   time: string;
@@ -55,23 +54,23 @@ const AcademicLevelPage: React.FC<AcademicLevelPageProps> = ({
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px' }}>
             {curriculumHighlights.map((highlight, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 style={{
-                  background: 'var(--cream)', 
-                  padding: '30px', 
+                  background: 'var(--cream)',
+                  padding: '30px',
                   borderRadius: 'var(--radius-lg)',
                   boxShadow: 'var(--shadow-sm)'
                 }}
               >
                 <div style={{
-                  width: '40px', 
-                  height: '40px', 
-                  background: 'var(--primary)', 
-                  color: 'var(--accent)', 
+                  width: '40px',
+                  height: '40px',
+                  background: 'var(--primary)',
+                  color: 'var(--accent)',
                   borderRadius: '50%',
-                  display: 'flex', 
-                  alignItems: 'center', 
+                  display: 'flex',
+                  alignItems: 'center',
                   justifyContent: 'center',
                   fontWeight: 'bold',
                   marginBottom: '16px'
@@ -94,20 +93,20 @@ const AcademicLevelPage: React.FC<AcademicLevelPageProps> = ({
           </div>
           <div style={{ maxWidth: '800px', margin: '0 auto' }}>
             {typicalDay.map((item, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 style={{
-                  display: 'flex', 
+                  display: 'flex',
                   borderBottom: idx !== typicalDay.length - 1 ? '1px solid var(--border-light)' : 'none',
                   padding: '20px 0',
                   gap: '30px'
                 }}
               >
-                <div style={{ 
-                  fontWeight: 700, 
-                  color: 'var(--accent)', 
-                  width: '120px', 
-                  flexShrink: 0 
+                <div style={{
+                  fontWeight: 700,
+                  color: 'var(--accent)',
+                  width: '120px',
+                  flexShrink: 0
                 }}>
                   {item.time}
                 </div>
@@ -119,7 +118,7 @@ const AcademicLevelPage: React.FC<AcademicLevelPageProps> = ({
           </div>
         </div>
       </section>
-      
+
       {/* Call to Action */}
       <section style={{ padding: '60px 0', textAlign: 'center', background: 'var(--bg-light)' }}>
         <div className="container">

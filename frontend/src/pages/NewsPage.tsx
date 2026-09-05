@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Calendar, User, ArrowRight } from 'lucide-react';
+import { Calendar, ArrowRight } from 'lucide-react';
 
 interface NewsItem {
   news_id: number;

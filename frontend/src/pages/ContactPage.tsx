@@ -170,6 +170,7 @@ const ContactPage = () => {
                   ></textarea>
                 </div>
 
+                {error && <p style={{ color: 'var(--error)', marginBottom: '12px', textAlign: 'center' }}>{error}</p>}
                 <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '12px', padding: '14px' }}>
                   Send Message <Send size={18} />
                 </button>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Calendar as CalendarIcon, MapPin, Clock } from 'lucide-react';
+import { MapPin, Clock } from 'lucide-react';
 
 interface EventItem {
   event_id: number;
@@ -55,6 +55,7 @@ const EventsPage = () => {
       </div>
       <div className="page-content container">
         {loading && <div className="text-center p-8">Loading events...</div>}
+        {error && <p style={{ color: 'var(--error)', textAlign: 'center', padding: '1rem' }}>{error}</p>}
 
         <div className="events-list" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '800px', margin: '0 auto' }}>
           {events.map(event => {

@@ -21,7 +21,7 @@ const NewsGridPreview = () => {
   const [visibleCount, setVisibleCount] = useState(7);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/public/news/')
+    fetch('/api/public/news/')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch news');
         return res.json();

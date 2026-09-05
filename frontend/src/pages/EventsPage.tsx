@@ -17,7 +17,7 @@ const EventsPage = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('/api/public/news/')
+    fetch('/api/public/events/')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch events');
         return res.json();

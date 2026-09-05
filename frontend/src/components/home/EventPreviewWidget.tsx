@@ -26,7 +26,7 @@ const EventPreviewWidget = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/public/events/')
+    fetch('/api/public/events/')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch events');
         return res.json();

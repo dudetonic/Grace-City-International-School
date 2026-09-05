@@ -23,7 +23,7 @@ const ContactPage = () => {
     setError(null);
 
     try {
-      const response = await fetch('/api/public/news/', {
+      const response = await fetch('/api/public/contact/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData), // your existing name/email/subject/message state

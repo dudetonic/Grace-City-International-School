@@ -16,7 +16,7 @@ const AdmissionsPage = () => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const response = await fetch('/api/public/news/', {
+      const response = await fetch('/api/public/admissions/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
